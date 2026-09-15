@@ -1,0 +1,5 @@
+{
+  "load_classes": ["life_safety", "collection_protection", "visitor_critical", "deferrable"],
+  "command_actions": ["start", "reduce", "stop", "restore"],
+  "telemetry_quality": ["good", "late", "missing", "invalid"]
+}

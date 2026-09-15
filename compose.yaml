@@ -1,0 +1,12 @@
+services:
+  api:
+    build: .
+    environment:
+      PORT: 8000
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8000/health').then(r=>{if(!r.ok)process.exit(1)})"]
+      interval: 5s
+      timeout: 2s
+      retries: 5
