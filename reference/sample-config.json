@@ -1,0 +1,140 @@
+{
+  "halls": [
+    {
+      "id": "hall-conservation",
+      "name": "藏品展示厅",
+      "priority": 10,
+      "openWindows": [{ "start": "2026-09-17T09:00:00+08:00", "end": "2026-09-17T17:00:00+08:00" }]
+    },
+    {
+      "id": "hall-immersion",
+      "name": "沉浸式影院",
+      "priority": 20,
+      "openWindows": [{ "start": "2026-09-17T09:00:00+08:00", "end": "2026-09-17T17:00:00+08:00" }]
+    },
+    {
+      "id": "hall-mechanics",
+      "name": "机械展项厅",
+      "priority": 30,
+      "openWindows": [{ "start": "2026-09-17T09:00:00+08:00", "end": "2026-09-17T17:00:00+08:00" }]
+    }
+  ],
+  "devices": [
+    {
+      "id": "emergency-lighting",
+      "hallId": "hall-conservation",
+      "name": "应急照明与疏散指示",
+      "loadClass": "life_safety",
+      "ratedPowerKw": 6,
+      "continuous": true
+    },
+    {
+      "id": "showcase-climate-1",
+      "hallId": "hall-conservation",
+      "name": "恒温展示柜 A",
+      "loadClass": "collection_protection",
+      "ratedPowerKw": 9,
+      "continuous": true,
+      "curve": [{ "offsetMinutes": 0, "kw": 9 }]
+    },
+    {
+      "id": "showcase-climate-2",
+      "hallId": "hall-conservation",
+      "name": "恒温展示柜 B",
+      "loadClass": "collection_protection",
+      "ratedPowerKw": 8,
+      "continuous": true,
+      "curve": [{ "offsetMinutes": 0, "kw": 8 }]
+    },
+    {
+      "id": "cinema-hvac",
+      "hallId": "hall-immersion",
+      "name": "影院空调机组",
+      "loadClass": "visitor_critical",
+      "ratedPowerKw": 28,
+      "runMinutes": 480,
+      "minRunMinutes": 30,
+      "shutdownMinutes": 10,
+      "curve": [{ "offsetMinutes": 0, "kw": 28 }]
+    },
+    {
+      "id": "cinema-projector",
+      "hallId": "hall-immersion",
+      "name": "沉浸式投影阵列",
+      "loadClass": "visitor_critical",
+      "ratedPowerKw": 42,
+      "runMinutes": 420,
+      "minRunMinutes": 20,
+      "shutdownMinutes": 15,
+      "requires": ["cinema-hvac"],
+      "curve": [
+        { "offsetMinutes": 0, "kw": 30 },
+        { "offsetMinutes": 10, "kw": 42 }
+      ]
+    },
+    {
+      "id": "cinema-audio",
+      "hallId": "hall-immersion",
+      "name": "全景声系统",
+      "loadClass": "visitor_critical",
+      "ratedPowerKw": 12,
+      "runMinutes": 420,
+      "minRunMinutes": 10,
+      "shutdownMinutes": 5,
+      "requires": ["cinema-hvac"],
+      "curve": [{ "offsetMinutes": 0, "kw": 12 }]
+    },
+    {
+      "id": "robot-arm-demo",
+      "hallId": "hall-mechanics",
+      "name": "机械臂演示",
+      "loadClass": "deferrable",
+      "ratedPowerKw": 24,
+      "runMinutes": 240,
+      "minRunMinutes": 15,
+      "shutdownMinutes": 10,
+      "curve": [
+        { "offsetMinutes": 0, "kw": 18 },
+        { "offsetMinutes": 5, "kw": 24 }
+      ]
+    },
+    {
+      "id": "kinetic-sculpture",
+      "hallId": "hall-mechanics",
+      "name": "动态雕塑阵列",
+      "loadClass": "deferrable",
+      "ratedPowerKw": 16,
+      "runMinutes": 360,
+      "minRunMinutes": 10,
+      "shutdownMinutes": 5,
+      "reducibleToKw": 8,
+      "curve": [{ "offsetMinutes": 0, "kw": 16 }]
+    },
+    {
+      "id": "hall-lighting",
+      "hallId": "hall-mechanics",
+      "name": "展厅效果照明",
+      "loadClass": "deferrable",
+      "ratedPowerKw": 20,
+      "runMinutes": 480,
+      "minRunMinutes": 0,
+      "shutdownMinutes": 0,
+      "reducibleToKw": 12,
+      "curve": [{ "offsetMinutes": 0, "kw": 20 }]
+    }
+  ],
+  "tariff": [
+    { "start": "2026-09-17T00:00:00+08:00", "end": "2026-09-17T10:00:00+08:00", "pricePerKwh": 0.45 },
+    { "start": "2026-09-17T10:00:00+08:00", "end": "2026-09-17T15:00:00+08:00", "pricePerKwh": 1.2 },
+    { "start": "2026-09-17T15:00:00+08:00", "end": "2026-09-18T00:00:00+08:00", "pricePerKwh": 0.7 }
+  ],
+  "settings": {
+    "slotMinutes": 5,
+    "meteringWindowMinutes": 15,
+    "ackTimeoutMinutes": 2,
+    "telemetryTimeoutMinutes": 3,
+    "horizonHours": 12,
+    "defaultPricePerKwh": 0.6,
+    "defaultLimitKw": 160
+  }
+}
